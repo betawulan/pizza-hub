@@ -31,11 +31,15 @@ func main() {
 		log.Fatal("can't connect database")
 	}
 
-	pizzaHubrepo := repository.NewPizzaHubRepository(db)
-	pizzaHubService := service.NewPizzaHubService(pizzaHubrepo)
+	chefRepo := repository.NewChefRepository(db)
+	menuRepo := repository.NewMenuRepository(db)
+
+	chefService := service.NewChefService(chefRepo)
+	menuService := service.NewMenuService(menuRepo)
 
 	e := echo.New()
-	delivery.AddPizzaHubRoute(pizzaHubService, e)
+	delivery.AddChefRoute(chefService, e)
+	delivery.AddMenuRoute(menuService, e)
 
 	e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", port)))
 }
