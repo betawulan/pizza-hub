@@ -8,4 +8,5 @@ import (
 
 type PizzaHubRepository interface {
 	AddChef(ctx context.Context, chef model.Chef) (model.Chef, error)
+	GetMenus(ctx context.Context) ([]model.Menu, error)
 }

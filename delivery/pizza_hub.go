@@ -29,10 +29,21 @@ func (p pizzaHubDelivery) addChef(c echo.Context) error {
 	return c.JSON(http.StatusCreated, res)
 }
 
+func (p pizzaHubDelivery) getMenus(c echo.Context) error {
+	
+	menus, err := p.pizzaHubService.GetMenus(c.Request().Context())
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, err)
+	}
+
+	return c.JSON(http.StatusOK, menus)
+}
+
 func AddPizzaHubRoute(pizzaHubService service.PizzaHubService, e *echo.Echo) {
 	handler := pizzaHubDelivery{
 		pizzaHubService: pizzaHubService,
 	}
 
 	e.POST("/chef", handler.addChef)
+	e.GET("/menus", handler.getMenus)
 }
