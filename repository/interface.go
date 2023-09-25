@@ -13,3 +13,7 @@ type ChefRepository interface {
 type MenuRepository interface {
 	GetMenus(ctx context.Context) ([]model.Menu, error)
 }
+
+type OrderRepository interface {
+	Order(ctx context.Context, order model.Order) (model.Order, error)
+}

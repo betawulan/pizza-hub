@@ -33,13 +33,16 @@ func main() {
 
 	chefRepo := repository.NewChefRepository(db)
 	menuRepo := repository.NewMenuRepository(db)
+	orderRepo := repository.NewOrderRepository(db)
 
 	chefService := service.NewChefService(chefRepo)
 	menuService := service.NewMenuService(menuRepo)
+	orderService := service.NewOrderService(orderRepo)
 
 	e := echo.New()
 	delivery.AddChefRoute(chefService, e)
 	delivery.AddMenuRoute(menuService, e)
+	delivery.AddOrderRoute(orderService, e)
 
 	e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", port)))
 }
