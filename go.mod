@@ -3,6 +3,7 @@ module github.com/betawulan/pizza-hub
 go 1.21
 
 require (
+	github.com/DATA-DOG/go-sqlmock v1.5.0
 	github.com/Masterminds/squirrel v1.5.4
 	github.com/go-sql-driver/mysql v1.7.1
 	github.com/labstack/echo/v4 v4.11.1
